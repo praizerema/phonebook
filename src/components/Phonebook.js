@@ -10,7 +10,8 @@ class Phonebook extends Component {
       email: "",
       address: "",
       fileupload: "",
-      contactList: []
+      contactList: [],
+      table: []
     };
   }
   surnameHandler(e) {
@@ -52,7 +53,8 @@ class Phonebook extends Component {
       alert("invalid othernames");
     } else if (this.state.phoneNo.length > 11) {
       alert("invalid phoneNo");
-    } else if(!/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(
+    } else if (
+      !/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(
         this.state.email
       )
     ) {
@@ -151,42 +153,61 @@ class Phonebook extends Component {
         <div className="contactWrap">
           <h2>My Contact List</h2>
           <table>
-            <tr>
-              <th>Name</th> <th>Phone No</th> <th>Email</th> <th>Address</th>{" "}
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td>Praise Erema</td> <td>08101132922</td>{" "}
-              <td>praiseerema@gmail.com</td>{" "}
-              <td>No 50 olisa street ikare akoko, ondo state</td>{" "}
-              <td>
-                <button className="green" id="">
-                  View
-                </button>
-                <button className="blue">Edit</button>
-                <button className="red">Del</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Divine Glory</td> <td>09034576923</td>{" "}
-              <td>divineglo@yahoo.com</td>{" "}
-              <td>16, ifeloju street Arigidi-Akoko</td>{" "}
-              <td>
-                <button className="green">View</button>
-                <button className="blue">Edit</button>
-                <button className="red">Del</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Segun Adisa</td> <td>08149235677</td>{" "}
-              <td>adisaolu@yahoo.com</td>{" "}
-              <td>17, academy street ugbe akoko ondo state</td>{" "}
-              <td>
-                <button className="green">View</button>
-                <button className="blue">Edit</button>
-                <button className="red">Del</button>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Name</th> <th>Phone No</th> <th>Email</th> <th>Address</th>
+                <th>Action</th>
+              </tr>
+              {this.state.contactList.map(function(item, key) {
+                return (
+                  <tr key={key}>
+                    <td>
+                      {item.surname} {item.othernames}
+                    </td>
+                    <td>{item.phoneNo}</td>
+                    <td>{item.email}</td>
+                    <td>{item.address}</td>
+                    <td>
+                      <button className="green">View</button>
+                      <button className="blue">Edit</button>
+                      <button className="red">Del</button>
+                    </td>
+                  </tr>
+                  // <tr>
+                  //   <td>Praise Erema</td> <td>08101132922</td>{" "}
+                  //   <td>praiseerema@gmail.com</td>{" "}
+                  //   <td>No 50 olisa street ikare akoko, ondo state</td>{" "}
+                  //   <td>
+                  //     <button className="green" id="">
+                  //       View
+                  //     </button>
+                  //     <button className="blue">Edit</button>
+                  //     <button className="red">Del</button>
+                  //   </td>
+                  // </tr>
+                  // <tr>
+                  //   <td>Divine Glory</td> <td>09034576923</td>{" "}
+                  //   <td>divineglo@yahoo.com</td>{" "}
+                  //   <td>16, ifeloju street Arigidi-Akoko</td>{" "}
+                  //   <td>
+                  //     <button className="green">View</button>
+                  //     <button className="blue">Edit</button>
+                  //     <button className="red">Del</button>
+                  //   </td>
+                  // </tr>
+                  // <tr>
+                  //   <td>Segun Adisa</td> <td>08149235677</td>{" "}
+                  //   <td>adisaolu@yahoo.com</td>{" "}
+                  //   <td>17, academy street ugbe akoko ondo state</td>{" "}
+                  //   <td>
+                  //     <button className="green">View</button>
+                  //     <button className="blue">Edit</button>
+                  //     <button className="red">Del</button>
+                  //   </td>
+                  // </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>
