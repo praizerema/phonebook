@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./phonebook.css";
+//import { genericTypeAnnotation } from "@babel/types";
 class Phonebook extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +45,31 @@ class Phonebook extends Component {
     this.setState({ fileupload: e.target.value });
     console.log(fileupload);
   }
+  viewInfo(key) {
+   
+    console.log(key);
+  }
+  editInfo(index,value,key) {
+    const contactList= this.state.contactList
+    const newContactList= contactList.map((contactLists, i)=> {
+      if(i === index) {
+        return contactLists
+      }
+      return value
+    })
+    this.setState({contactList:newContactList})
+    console.log(newContactList);
+  }
+  deleteInfo(index, key) {
+     const contactList= this.state.contactList
+    const newContactList= [
+      contactList.slice(0, index)
+    ];
+    this.setState({
+      contactList: newContactList
+    })
+    console.log(newContactList);
+  }
   add(e) {
     e.preventDefault();
     if (this.state.surname.length < 3) {
@@ -82,6 +108,7 @@ class Phonebook extends Component {
   }
 
   render() {
+    let cls = this;
     return (
       <div className="bdy">
         <div className="contentWrap">
@@ -168,9 +195,24 @@ class Phonebook extends Component {
                     <td>{item.email}</td>
                     <td>{item.address}</td>
                     <td>
-                      <button className="green">View</button>
-                      <button className="blue">Edit</button>
-                      <button className="red">Del</button>
+                      <button
+                        className="green"
+                        onClick={cls.viewInfo.bind(cls, key)}
+                      >
+                        View
+                      </button>
+                      <button
+                        className="blue"
+                        onClick={cls.editInfo.bind(cls, key)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="red"
+                        onClick={cls.deleteInfo.bind(cls, key)}
+                      >
+                        Del
+                      </button>
                     </td>
                   </tr>
                   // <tr>
