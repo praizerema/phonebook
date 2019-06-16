@@ -9,21 +9,22 @@
   text-align: left;
 
 } */
-.bdy{
+.bdy {
     width: 100%;
     height: 100vh;
 }
+
 .contentWrap {
     width: 100%;
 
-    background-color: #fff; 
+    background-color: #fff;
     position: relative;
-    
+
 }
+
 .signupPage {
     width: 21%;
-    height: 65vh;
-    background-color:#efef;
+    background-color: #efef;
     padding: 10px;
     margin: auto;
     margin-top: 3vh;
@@ -34,9 +35,11 @@
     text-align: left;
     float: left;
 }
-.address{
+
+.address {
     width: 88%;
 }
+
 label,
 input,
 .add {
@@ -46,14 +49,18 @@ input,
     font-size: 1em;
     margin: 10px;
     border: 1px thin #efefef;
-    
+}
+
+input.edit {
+    width: 90%;
+    align-self: auto;
 }
 
 
 label {
     font-weight: 700;
     text-align: left !important;
-   
+
 }
 
 
@@ -62,44 +69,50 @@ button:hover {
     background-color: #778d80;
     box-shadow: 1px;
 }
-.contactWrap{
+
+.contactWrap {
     width: 70%;
     height: 65vh;
-    background-color:#efef;
-   float: right;
-   border-radius: 2px;
-   margin-top:3vh ;
-   margin-right: 2%;
+    background-color: #efef;
+    float: right;
+    border-radius: 2px;
+    margin-top: 3vh;
+    margin-right: 2%;
 }
+
 /* .ActionGreen,.ActionBlue,.ActionRed{
     width:28%;
     margin: 2%;
     font-size: 0.7em;
 
 } */
-.green{
+.green {
     background-color: #186334;
     font-weight: 600;
     font-size: 0.8em;
     color: rgb(253, 245, 123);
 }
-.red{
-    background-color:#ec2626;
+
+.red {
+    background-color: #ec2626;
     font-weight: 600;
     font-size: 0.8em;
     color: rgb(253, 245, 123);
 }
-.blue{
+
+.blue {
     background-color: #3421df;
     font-weight: 600;
     font-size: 0.8em;
     color: rgb(253, 245, 123);
 }
-h2{
+
+h2 {
     color: #07302c;
     font-family: Arial, Helvetica, sans-serif;
-   text-align: center
+    text-align: center
 }
+
 .add {
     background-color: #1b4446;
     height: 50px;
@@ -109,14 +122,46 @@ h2{
     font-size: 1em;
     font-weight: bold;
     text-align: center;
-  
+
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid rgb(212, 201, 201);
     border-collapse: collapse;
     margin: auto
-  }
-  th, td {
+}
+
+th,
+td {
     padding: 10px;
-  }
+}
+
+.editWrap {
+    padding: 20px 10px;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .7);
+    width: 100vw;
+    height: 100vh;
+    align-content: center;
+}
+
+.closeWrap {
+    width: 40%;
+    justify-self: center;
+    align-self: center
+}
+
+.closeWrap .close {
+    position: relative;
+    right: -101%;
+    font-weight: 600;
+    top: 20px;
+    color: red;
+    cursor: pointer;
+}
+
+.editBody {
+    background-color: #fff;
+}

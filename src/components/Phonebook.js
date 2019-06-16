@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./phonebook.css";
 //import { genericTypeAnnotation } from "@babel/types";
+
 class Phonebook extends Component {
   constructor(props) {
     super(props);
@@ -12,64 +13,42 @@ class Phonebook extends Component {
       address: "",
       fileupload: "",
       contactList: [],
-      table: []
+      table: [],
+      showEdit: false,
+      editValues: [],
+      editIndex: -1
     };
   }
-  surnameHandler(e) {
-    var surname = e.target.value;
-    this.setState({ surname: e.target.value });
-    console.log(surname);
-  }
-  othernamesHandler(e) {
-    var othernames = e.target.value;
-    this.setState({ othernames: e.target.value });
-    console.log(othernames);
-  }
-  emailHandler(e) {
-    var email = e.target.value;
-    this.setState({ email: e.target.value });
-    console.log(email);
-  }
-  phoneNoHandler(e) {
-    var phoneNo = e.target.value;
-    this.setState({ phoneNo: e.target.value });
-    console.log(phoneNo);
-  }
-  addressHandler(e) {
-    var address = e.target.value;
-    this.setState({ address: e.target.value });
-    console.log(address);
-  }
-  fileuploadHandler(e) {
-    var fileupload = e.target.value;
-    this.setState({ fileupload: e.target.value });
-    console.log(fileupload);
-  }
+  surnameHandler = e => this.setState({ surname: e.target.value });
+
+  othernamesHandler = e => this.setState({ othernames: e.target.value });
+
+  emailHandler = e => this.setState({ email: e.target.value });
+
+  phoneNoHandler = e => this.setState({ phoneNo: e.target.value });
+
+  addressHandler = e => this.setState({ address: e.target.value });
+
+  fileuploadHandler = e => this.setState({ fileupload: e.target.value });
+
   viewInfo(key) {
-   
     console.log(key);
   }
-  editInfo(index,value,key) {
-    const contactList= this.state.contactList
-    const newContactList= contactList.map((contactLists, i)=> {
-      if(i === index) {
-        return contactLists
-      }
-      return value
-    })
-    this.setState({contactList:newContactList})
-    console.log(newContactList);
+  editInfo(index, key) {
+    this.setState({
+      showEdit: true,
+      editValues: this.state.contactList[index],
+      editIndex: index
+    });
   }
-  deleteInfo(index, key) {
-     const contactList= this.state.contactList
-    const newContactList= [
-      contactList.slice(0, index)
-    ];
+  deleteInfo = (index, key) => {
+    const contactList = this.state.contactList;
+    const newContactList = [contactList.slice(0, index)];
     this.setState({
       contactList: newContactList
-    })
+    });
     console.log(newContactList);
-  }
+  };
   add(e) {
     e.preventDefault();
     if (this.state.surname.length < 3) {
@@ -121,41 +100,31 @@ class Phonebook extends Component {
             >
               <h2>Add New Contact</h2>
               <input
-                name="surname"
-                id="surname"
                 type="text"
                 placeholder="Surname"
                 onChange={this.surnameHandler.bind(this)}
                 value={this.state.surname}
               />
               <input
-                name="othernames"
-                id="othernames"
                 type="text"
                 placeholder="Othernames"
                 onChange={this.othernamesHandler.bind(this)}
                 value={this.state.othernames}
               />
               <input
-                name="phoneNo"
-                id="phoneNo"
                 type="tel"
                 placeholder="Mobile No"
                 onChange={this.phoneNoHandler.bind(this)}
                 value={this.state.phoneNo}
               />
               <input
-                name="email"
-                id="email"
                 type="email"
                 placeholder="Email"
                 onChange={this.emailHandler.bind(this)}
                 value={this.state.email}
               />
               <input
-                className="address"
-                name="address"
-                id="address"
+                style={{ width: "90%" }}
                 type="address"
                 placeholder="Address"
                 onChange={this.addressHandler.bind(this)}
@@ -163,8 +132,7 @@ class Phonebook extends Component {
               />
               <label>Upload contact image</label> <br />
               <input
-                name="fileupload"
-                id="fileupload"
+                style={{ width: "90%" }}
                 type="file"
                 placeholder="image"
                 onChange={this.fileuploadHandler.bind(this)}
@@ -176,7 +144,7 @@ class Phonebook extends Component {
             </form>
           </div>
         </div>
-
+        <Edit clsdata={this} />
         <div className="contactWrap">
           <h2>My Contact List</h2>
           <table>
@@ -256,4 +224,55 @@ class Phonebook extends Component {
     );
   }
 }
+
+const Edit = cls => {
+  if (cls.clsdata.state.editValues.length == 0) {
+    return null;
+  }
+  const contact = cls.clsdata.state.editValues;
+  const index = cls.clsdata.state.editIndex;
+  let contactList = cls.clsdata.state.contactList;
+  return (
+    <div
+      className="editWrap"
+      style={
+        cls.clsdata.state.showEdit ? { display: "grid" } : { display: "none" }
+      }
+    >
+      <div className="closeWrap">
+        <span
+          className="close"
+          onClick={() => cls.clsdata.setState({ showEdit: false })}
+        >
+          x
+        </span>
+        <div className="editBody">
+          <h2>Edit Contact</h2>
+          <input
+            type="email"
+            placeholder="Email"
+            className="edit"
+            onChange={e => {
+              cls.clsdata.setState({
+                editValues: { ...contact, email: e.target.value }
+              });
+              contactList[index] = cls.clsdata.state.editValues;
+              cls.clsdata.setState({
+                contactList: contactList
+              });
+              console.log(cls.clsdata.state.contactList);
+            }}
+            value={contact.email}
+          />
+          <button
+            className="blue"
+            onClick={() => cls.clsdata.setState({ showEdit: false })}
+          >
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 export default Phonebook;
