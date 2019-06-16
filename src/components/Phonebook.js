@@ -82,7 +82,6 @@ class Phonebook extends Component {
       var contacts = this.state.contactList;
       contacts.push(data);
       this.setState({ contactList: contacts });
-      console.log(JSON.stringify(this.state.contactList));
     }
   }
 
@@ -260,12 +259,11 @@ const Edit = cls => {
               cls.clsdata.setState({
                 contactList: contactList
               });
-              console.log(cls.clsdata.state.contactList);
             }}
             value={contact.email}
           />
           <button
-            className="blue"
+            className="add"
             onClick={() => cls.clsdata.setState({ showEdit: false })}
           >
             Done
