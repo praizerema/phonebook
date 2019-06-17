@@ -43,11 +43,11 @@ class Phonebook extends Component {
   }
   deleteInfo = (index, key) => {
     const contactList = this.state.contactList;
-    const newContactList = [contactList.slice(0, index)];
+    delete contactList[index];
     this.setState({
-      contactList: newContactList
+      contactList: contactList
     });
-    console.log(newContactList);
+    console.log(contactList);
   };
   add(e) {
     e.preventDefault();
@@ -225,7 +225,7 @@ class Phonebook extends Component {
 }
 
 const Edit = cls => {
-  if (cls.clsdata.state.editValues.length == 0) {
+  if (cls.clsdata.state.editValues.length === 0) {
     return null;
   }
   const contact = cls.clsdata.state.editValues;
