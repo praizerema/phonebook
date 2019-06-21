@@ -25,7 +25,7 @@ class ImageUpload extends React.Component {
     };
 
     reader.readAsDataURL(file); // the file here will be this.state.fileupload
-    //to here
+    //what you need in your view to here
     console.log(file);
   }
 
