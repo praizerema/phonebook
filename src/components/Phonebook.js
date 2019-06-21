@@ -11,13 +11,16 @@ class Phonebook extends Component {
       phoneNo: "",
       email: "",
       address: "",
-      fileupload: "",
+      file: "",
       contactList: [],
       table: [],
       showEdit: false,
       editValues: [],
-      editIndex: -1
+      editIndex: -1,
+      viewValues:[],
+      showView: false
     };
+    this.fileuploadHandler.bind(this)
   }
   surnameHandler = e => this.setState({ surname: e.target.value });
 
@@ -29,10 +32,15 @@ class Phonebook extends Component {
 
   addressHandler = e => this.setState({ address: e.target.value });
 
-  fileuploadHandler = e => this.setState({ fileupload: e.target.value });
-
-  viewInfo(key) {
-    console.log(key);
+  fileuploadHandler = event => {if (event.target.files && event.target.files[0]){
+    this.setState({ fileupload: URL.createObjectURL(event.target.files[0])})}};
+  
+  viewInfo(index, key) {
+    this.setState({
+      showView: true,
+      viewValues: this.state.contactList[index],
+     viewIndex: index
+    });
   }
   editInfo(index, key) {
     this.setState({
@@ -134,8 +142,8 @@ class Phonebook extends Component {
                 style={{ width: "90%" }}
                 type="file"
                 placeholder="image"
-                onChange={this.fileuploadHandler.bind(this)}
-                value={this.state.fileupload}
+                onChange={this.fileuploadHandler}
+              //  value={this.state.fileupload}
               />
               <button className="add" type="submit" name="add">
                 Add
@@ -144,6 +152,7 @@ class Phonebook extends Component {
           </div>
         </div>
         <Edit clsdata={this} />
+        <View clsdata={this}/>
         <div className="contactWrap">
           <h2>My Contact List</h2>
           <table>
@@ -182,38 +191,7 @@ class Phonebook extends Component {
                       </button>
                     </td>
                   </tr>
-                  // <tr>
-                  //   <td>Praise Erema</td> <td>08101132922</td>{" "}
-                  //   <td>praiseerema@gmail.com</td>{" "}
-                  //   <td>No 50 olisa street ikare akoko, ondo state</td>{" "}
-                  //   <td>
-                  //     <button className="green" id="">
-                  //       View
-                  //     </button>
-                  //     <button className="blue">Edit</button>
-                  //     <button className="red">Del</button>
-                  //   </td>
-                  // </tr>
-                  // <tr>
-                  //   <td>Divine Glory</td> <td>09034576923</td>{" "}
-                  //   <td>divineglo@yahoo.com</td>{" "}
-                  //   <td>16, ifeloju street Arigidi-Akoko</td>{" "}
-                  //   <td>
-                  //     <button className="green">View</button>
-                  //     <button className="blue">Edit</button>
-                  //     <button className="red">Del</button>
-                  //   </td>
-                  // </tr>
-                  // <tr>
-                  //   <td>Segun Adisa</td> <td>08149235677</td>{" "}
-                  //   <td>adisaolu@yahoo.com</td>{" "}
-                  //   <td>17, academy street ugbe akoko ondo state</td>{" "}
-                  //   <td>
-                  //     <button className="green">View</button>
-                  //     <button className="blue">Edit</button>
-                  //     <button className="red">Del</button>
-                  //   </td>
-                  // </tr>
+                  
                 );
               })}
             </tbody>
@@ -247,6 +225,41 @@ const Edit = cls => {
         </span>
         <div className="editBody">
           <h2>Edit Contact</h2>
+          <label>Surname</label>
+          <input
+            type="text"
+            placeholder="Surname"
+            className="edit"
+            onChange={e => {
+              cls.clsdata.setState({
+                editValues: { ...contact, surname: e.target.value }
+              });
+              contactList[index] = cls.clsdata.state.editValues;
+              cls.clsdata.setState({
+                contactList: contactList
+              });
+            }}
+            value={contact.surname}
+           
+          />
+            <label>Othernames</label>
+                    <input
+            type="text"
+            placeholder="Othernames"
+            className="edit"
+            onChange={e => {
+              cls.clsdata.setState({
+                editValues: { ...contact, othernames: e.target.value }
+              });
+              contactList[index] = cls.clsdata.state.editValues;
+              cls.clsdata.setState({
+                contactList: contactList
+              });
+            }}
+            value={contact.othernames}
+           
+          />
+          <label>Email</label>
           <input
             type="email"
             placeholder="Email"
@@ -261,6 +274,41 @@ const Edit = cls => {
               });
             }}
             value={contact.email}
+           
+          />
+          <label>Mobile No</label>
+          <input
+          type="tel"
+          placeholder="Mobile No"
+          className="edit"
+          onChange={e => {
+            cls.clsdata.setState({
+              editValues: { ...contact, phoneNo: e.target.value }
+            });
+            contactList[index] = cls.clsdata.state.editValues;
+            cls.clsdata.setState({
+              contactList: contactList
+            });
+          }}
+          value={contact.phoneNo}
+         
+          />
+               <label>Address</label>     
+                    <input
+            type="text"
+            placeholder="address"
+            className="edit"
+            onChange={e => {
+              cls.clsdata.setState({
+                editValues: { ...contact, address: e.target.value }
+              });
+              contactList[index] = cls.clsdata.state.editValues;
+              cls.clsdata.setState({
+                contactList: contactList
+              });
+            }}
+            value={contact.address}
+           
           />
           <button
             className="add"
@@ -273,4 +321,58 @@ const Edit = cls => {
     </div>
   );
 };
+
+
+const View = cls => {
+  if (cls.clsdata.state.viewValues.length === 0) {
+    return null;
+  }
+  const contact = cls.clsdata.state.viewValues;
+
+  return (
+    <div
+      className="viewWrap"
+      style={
+        cls.clsdata.state.showView ? { display: "grid" } : { display: "none" }
+      }
+    >
+      <div className="closeWrap">
+        <span
+          className="close"
+          onClick={() => cls.clsdata.setState({ showView: false })}
+        >
+          x
+        </span>
+        <div className="viewBody">
+          <h2>View Contact</h2>
+          <div className="contactImage">
+          <img id="target" src= "{this.state.fileupload}" /> 
+             
+             </div>
+          <div  className="surnameOthername" 
+            > 
+            {contact.surname} {contact.othernames}
+           
+            </div>
+              
+          <div className="email">
+          <a href="#">   {contact.email} </a> 
+             </div>
+
+             <div className="phoneNo">
+             {contact.phoneNo}
+             </div>
+         
+         
+        
+             <div className="address">
+             {contact.address}
+             </div>
+          
+    
+        </div>
+      </div>
+    </div>
+  );
+          }
 export default Phonebook;

@@ -10,74 +10,69 @@
 
 } */
 .bdy {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 }
 
 .contentWrap {
-    width: 100%;
+  width: 100%;
 
-    background-color: #fff;
-    position: relative;
-
+  background-color: #fff;
+  position: relative;
 }
 
 .signupPage {
-    width: 21%;
-    background-color: #efef;
-    padding: 10px;
-    margin: auto;
-    margin-top: 3vh;
-    margin-left: 2%;
-    margin-right: 3%;
-    border-radius: 2px;
-    box-shadow: 3px 6px 3px 6px rgb(200, 228, 200);
-    text-align: left;
-    float: left;
+  width: 21%;
+  background-color: #efef;
+  padding: 10px;
+  margin: auto;
+  margin-top: 3vh;
+  margin-left: 2%;
+  margin-right: 3%;
+  border-radius: 2px;
+  box-shadow: 3px 6px 3px 6px rgb(200, 228, 200);
+  text-align: left;
+  float: left;
 }
 
 .address {
-    width: 88%;
+  width: 88%;
 }
 
 label,
 input,
 .add {
-    width: 40%;
-    height: 30px;
-    padding: 5px 5px;
-    font-size: 1em;
-    margin: 10px;
-    border: 1px thin #efefef;
+  width: 40%;
+  height: 30px;
+  padding: 5px 5px;
+  font-size: 1em;
+  margin: 10px;
+  border: 1px thin #efefef;
 }
 
 input.edit {
-    width: 90%;
-    align-self: auto;
+  width: 90%;
+  align-self: auto;
 }
-
 
 label {
-    font-weight: 700;
-    text-align: left !important;
-
+  font-weight: 700;
+  text-align: left !important;
 }
 
-
-
 button:hover {
-    background-color: #778d80;
-    box-shadow: 1px;
+  background-color: #778d80;
+  box-shadow: 1px;
 }
 
 .contactWrap {
-    width: 70%;
-    height: 65vh;
-    background-color: #efef;
-    float: right;
-    border-radius: 2px;
-    margin-top: 3vh;
-    margin-right: 2%;
+  width: 70%;
+  height: 65vh;
+  background-color: #efef;
+  float: right;
+  border-radius: 2px;
+  margin-top: 3vh;
+  margin-right: 2%;
 }
 
 /* .ActionGreen,.ActionBlue,.ActionRed{
@@ -87,81 +82,136 @@ button:hover {
 
 } */
 .green {
-    background-color: #186334;
-    font-weight: 600;
-    font-size: 0.8em;
-    color: rgb(253, 245, 123);
+  background-color: #186334;
+  font-weight: 600;
+  font-size: 0.8em;
+  color: rgb(253, 245, 123);
 }
 
 .red {
-    background-color: #ec2626;
-    font-weight: 600;
-    font-size: 0.8em;
-    color: rgb(253, 245, 123);
+  background-color: #ec2626;
+  font-weight: 600;
+  font-size: 0.8em;
+  color: rgb(253, 245, 123);
 }
 
 .blue {
-    background-color: #3421df;
-    font-weight: 600;
-    font-size: 0.8em;
-    color: rgb(253, 245, 123);
+  background-color: #3421df;
+  font-weight: 600;
+  font-size: 0.8em;
+  color: rgb(253, 245, 123);
 }
 
 h2 {
-    color: #07302c;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center
+  color: #07302c;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
 .add {
-    background-color: #1b4446;
-    height: 50px;
-    border-radius: 4px;
-    color: rgb(253, 245, 123);
-    width: 90%;
-    font-size: 1em;
-    font-weight: bold;
-    text-align: center;
-
+  background-color: #1b4446;
+  height: 50px;
+  border-radius: 4px;
+  color: rgb(253, 245, 123);
+  width: 90%;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
 }
 
 table,
 th,
 td {
-    border: 1px solid rgb(212, 201, 201);
-    border-collapse: collapse;
-    margin: auto
+  border: 1px solid rgb(212, 201, 201);
+  border-collapse: collapse;
+  margin: auto;
 }
 
 th,
 td {
-    padding: 10px;
+  padding: 10px;
 }
 
 .editWrap {
-    padding: 20px 10px;
-    position: fixed;
-    background-color: rgba(0, 0, 0, .7);
-    width: 100vw;
-    height: 100vh;
-    align-content: center;
+  padding: 20px 10px;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  align-content: center;
 }
 
 .closeWrap {
-    width: 40%;
-    justify-self: center;
-    align-self: center
+  width: 40%;
+  justify-self: center;
+  align-self: center;
 }
 
 .closeWrap .close {
-    position: relative;
-    right: -101%;
-    font-weight: 600;
-    top: 20px;
-    color: red;
-    cursor: pointer;
+  position: relative;
+  right: -101%;
+  font-weight: 600;
+  top: 20px;
+  color: red;
+  cursor: pointer;
 }
 
 .editBody {
-    background-color: #fff;
+  background-color: #fff;
+}
+.viewWrap {
+  padding: 20px 10px;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  align-content: center;
+  border-radius: 6px
+}
+.viewBody {
+  background-color: #fff;
+}
+.surnameOthername {
+  color: #9ed41e;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.email {
+  color: #9ed41e;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+
+}
+
+.phoneNo {
+  color: #9ed41e;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.address{
+    color: #9ed41e;
+    font-size: 1.2em;
+font-weight: bold;
+text-align: center;
+margin-bottom: 15px;
+}
+.contactImage{
+width: 30vw;
+height: 32vh;
+border-radius: 150px;
+
+margin: auto;
+}
+
+#target{
+    width: 30vw;
+    height: 32vh;
+    margin: auto;
 }
