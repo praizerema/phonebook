@@ -17,10 +17,10 @@ class Phonebook extends Component {
       showEdit: false,
       editValues: [],
       editIndex: -1,
-      viewValues:[],
+      viewValues: [],
       showView: false
     };
-    this.fileuploadHandler.bind(this)
+    this.fileuploadHandler.bind(this);
   }
   surnameHandler = e => this.setState({ surname: e.target.value });
 
@@ -32,14 +32,18 @@ class Phonebook extends Component {
 
   addressHandler = e => this.setState({ address: e.target.value });
 
-  fileuploadHandler = event => {if (event.target.files && event.target.files[0]){
-    this.setState({ fileupload: URL.createObjectURL(event.target.files[0])})}};
-  
+  fileuploadHandler = e => {
+    const self = this;
+    if (e.target.files && e.target.files[0]) {
+      this.setState({ fileupload: e.target.files[0] });
+    }
+  };
+
   viewInfo(index, key) {
     this.setState({
       showView: true,
       viewValues: this.state.contactList[index],
-     viewIndex: index
+      viewIndex: index
     });
   }
   editInfo(index, key) {
@@ -142,8 +146,9 @@ class Phonebook extends Component {
                 style={{ width: "90%" }}
                 type="file"
                 placeholder="image"
-                onChange={this.fileuploadHandler}
-              //  value={this.state.fileupload}
+                //onChange={this.fileuploadHandler}// what was there before
+                onChange={this.fileuploadHandler.bind(this)}
+                //value={this.state.fileupload}
               />
               <button className="add" type="submit" name="add">
                 Add
@@ -152,7 +157,7 @@ class Phonebook extends Component {
           </div>
         </div>
         <Edit clsdata={this} />
-        <View clsdata={this}/>
+        <View clsdata={this} />
         <div className="contactWrap">
           <h2>My Contact List</h2>
           <table>
@@ -191,7 +196,6 @@ class Phonebook extends Component {
                       </button>
                     </td>
                   </tr>
-                  
                 );
               })}
             </tbody>
@@ -240,10 +244,9 @@ const Edit = cls => {
               });
             }}
             value={contact.surname}
-           
           />
-            <label>Othernames</label>
-                    <input
+          <label>Othernames</label>
+          <input
             type="text"
             placeholder="Othernames"
             className="edit"
@@ -257,7 +260,6 @@ const Edit = cls => {
               });
             }}
             value={contact.othernames}
-           
           />
           <label>Email</label>
           <input
@@ -274,27 +276,25 @@ const Edit = cls => {
               });
             }}
             value={contact.email}
-           
           />
           <label>Mobile No</label>
           <input
-          type="tel"
-          placeholder="Mobile No"
-          className="edit"
-          onChange={e => {
-            cls.clsdata.setState({
-              editValues: { ...contact, phoneNo: e.target.value }
-            });
-            contactList[index] = cls.clsdata.state.editValues;
-            cls.clsdata.setState({
-              contactList: contactList
-            });
-          }}
-          value={contact.phoneNo}
-         
+            type="tel"
+            placeholder="Mobile No"
+            className="edit"
+            onChange={e => {
+              cls.clsdata.setState({
+                editValues: { ...contact, phoneNo: e.target.value }
+              });
+              contactList[index] = cls.clsdata.state.editValues;
+              cls.clsdata.setState({
+                contactList: contactList
+              });
+            }}
+            value={contact.phoneNo}
           />
-               <label>Address</label>     
-                    <input
+          <label>Address</label>
+          <input
             type="text"
             placeholder="address"
             className="edit"
@@ -308,7 +308,6 @@ const Edit = cls => {
               });
             }}
             value={contact.address}
-           
           />
           <button
             className="add"
@@ -321,7 +320,6 @@ const Edit = cls => {
     </div>
   );
 };
-
 
 const View = cls => {
   if (cls.clsdata.state.viewValues.length === 0) {
@@ -346,33 +344,22 @@ const View = cls => {
         <div className="viewBody">
           <h2>View Contact</h2>
           <div className="contactImage">
-          <img id="target" src= "{this.state.fileupload}" /> 
-             
-             </div>
-          <div  className="surnameOthername" 
-            > 
+            <img id="target" src="{this.state.fileupload}" />
+          </div>
+          <div className="surnameOthername">
             {contact.surname} {contact.othernames}
-           
-            </div>
-              
-          <div className="email">
-          <a href="#">   {contact.email} </a> 
-             </div>
+          </div>
 
-             <div className="phoneNo">
-             {contact.phoneNo}
-             </div>
-         
-         
-        
-             <div className="address">
-             {contact.address}
-             </div>
-          
-    
+          <div className="email">
+            <a href="#"> {contact.email} </a>
+          </div>
+
+          <div className="phoneNo">{contact.phoneNo}</div>
+
+          <div className="address">{contact.address}</div>
         </div>
       </div>
     </div>
   );
-          }
+};
 export default Phonebook;

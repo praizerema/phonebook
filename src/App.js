@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Phonebook from "./components/Phonebook";
+import ImageUpload from "./components/upload";
+import { Switch, Route } from "react-router";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ConfigRouters />
     </div>
   );
 }
+
+const ConfigRouters = () => (
+  <Switch>
+    <Route exact path="/" component={Phonebook} />
+    <Route path="/upload" component={ImageUpload} />
+    <Route component={"error"} />
+  </Switch>
+);
 
 export default App;
