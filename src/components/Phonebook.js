@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./phonebook.css";
 //import { genericTypeAnnotation } from "@babel/types";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 class Phonebook extends Component {
   constructor(props) {
@@ -100,106 +103,138 @@ class Phonebook extends Component {
   render() {
     let cls = this;
     return (
-      <div className="bdy">
-        <div className="contentWrap">
-          <div className="signupPage">
-            <form
-              action="post"
-              onSubmit={e => {
-                this.add(e);
-              }}
-            >
-              <h2>Add New Contact</h2>
-              <input
-                type="text"
-                placeholder="Surname"
-                onChange={this.surnameHandler.bind(this)}
-                value={this.state.surname}
-              />
-              <input
-                type="text"
-                placeholder="Othernames"
-                onChange={this.othernamesHandler.bind(this)}
-                value={this.state.othernames}
-              />
-              <input
-                type="tel"
-                placeholder="Mobile No"
-                onChange={this.phoneNoHandler.bind(this)}
-                value={this.state.phoneNo}
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                onChange={this.emailHandler.bind(this)}
-                value={this.state.email}
-              />
-              <input
-                style={{ width: "90%" }}
-                type="address"
-                placeholder="Address"
-                onChange={this.addressHandler.bind(this)}
-                value={this.state.address}
-              />
-              <label>Upload contact image</label> <br />
-              <input
-                style={{ width: "90%" }}
-                type="file"
-                placeholder="image"
-                //onChange={this.fileuploadHandler}// what was there before
-                onChange={this.fileuploadHandler.bind(this)}
-                //value={this.state.fileupload}
-              />
-              <button className="add" type="submit" name="add">
-                Add
-              </button>
-            </form>
+      <div className="bdy ">
+        <div className="contentWrap row">
+          <div className="col-4 ">
+            <div className="signupPage m-5">
+              <h3 className="mb-4 text-center">Add New Contact</h3>
+              <form
+                className="row"
+                action="post"
+                onSubmit={e => {
+                  this.add(e);
+                }}
+              >
+                <div className="form-group col-6 mb-4">
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Surname"
+                    onChange={this.surnameHandler.bind(this)}
+                    value={this.state.surname}
+                  />
+                </div>
+
+                <div className="form-group col-6">
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Othernames"
+                    onChange={this.othernamesHandler.bind(this)}
+                    value={this.state.othernames}
+                  />
+                </div>
+
+                <div className="form-group col-6 mb-4">
+                  <input
+                    className="form-control"
+                    type="tel"
+                    placeholder="Mobile No"
+                    onChange={this.phoneNoHandler.bind(this)}
+                    value={this.state.phoneNo}
+                  />
+                </div>
+
+                <div className="form-group col-6">
+                  <input
+                    className="form-control"
+                    type="email"
+                    placeholder="Email"
+                    onChange={this.emailHandler.bind(this)}
+                    value={this.state.email}
+                  />
+                </div>
+
+                <div className="form-group col-12 mb-4">
+                  <input
+                    className="form-control"
+                    type="address"
+                    placeholder="Address"
+                    onChange={this.addressHandler.bind(this)}
+                    value={this.state.address}
+                  />
+                </div>
+                <div className="form-group col-12 mb-5 text-left">
+                  <label className="font-weight-bold mb-2">
+                    Upload contact image
+                  </label>
+                  <br/>
+                  <input
+                    className="text-muted"
+                    type="file"
+                    placeholder="image"
+                    //onChange={this.fileuploadHandler}// what was there before
+                    onChange={this.fileuploadHandler.bind(this)}
+                    //value={this.state.fileupload}
+                  />
+                </div>
+                <div className="text-center col">
+                  <button className="btn btn-add" type="submit" name="add">
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-        <Edit clsdata={this} />
-        <View clsdata={this} />
-        <div className="contactWrap">
-          <h2>My Contact List</h2>
-          <table>
-            <tbody>
-              <tr>
-                <th>Name</th> <th>Phone No</th> <th>Email</th> <th>Address</th>
-                <th>Action</th>
-              </tr>
-              {this.state.contactList.map(function(item, key) {
-                return (
-                  <tr key={key}>
-                    <td>
-                      {item.surname} {item.othernames}
-                    </td>
-                    <td>{item.phoneNo}</td>
-                    <td>{item.email}</td>
-                    <td>{item.address}</td>
-                    <td>
-                      <button
-                        className="green"
-                        onClick={cls.viewInfo.bind(cls, key)}
-                      >
-                        View
-                      </button>
-                      <button
-                        className="blue"
-                        onClick={cls.editInfo.bind(cls, key)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="red"
-                        onClick={cls.deleteInfo.bind(cls, key)}
-                      >
-                        Del
-                      </button>
-                    </td>
+
+          <Edit clsdata={this} />
+          <View clsdata={this} />
+          <div className="col-8">
+            <div className="contactWrap m-4">
+              <h3 className="mb-4 text-center">My Contact List</h3>
+              <table className="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th>Name</th> <th>Phone No</th> <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                  {this.state.contactList.map(function(item, key) {
+                    return (
+                      <tr key={key}>
+                        <td>
+                          {item.surname} {item.othernames}
+                        </td>
+                        <td>{item.phoneNo}</td>
+                        <td>{item.email}</td>
+                        <td>{item.address}</td>
+                        <td>
+                          <button
+                            className="btn mr-2 btn-green"
+                            onClick={cls.viewInfo.bind(cls, key)}
+                          >
+                            <FontAwesomeIcon icon={faEye} />
+                          </button>
+                          <button
+                            className="btn mr-2 btn-blue"
+                            onClick={cls.editInfo.bind(cls, key)}
+                          >
+                            <FontAwesomeIcon icon={faEdit} />
+                          </button>
+                          <button
+                            className="btn btn-red"
+                            onClick={cls.deleteInfo.bind(cls, key)}
+                          >
+                            <FontAwesomeIcon icon={faTrash} />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -344,7 +379,8 @@ const View = cls => {
         <div className="viewBody">
           <h2>View Contact</h2>
           <div className="contactImage">
-            <img id="target" src="{this.state.fileupload}" />
+            <img id="target" src={cls.clsdata.state.imagePreviewUrl}/>
+          
           </div>
           <div className="surnameOthername">
             {contact.surname} {contact.othernames}
