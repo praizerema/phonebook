@@ -7,7 +7,7 @@ class ImageUpload extends React.Component {
   }
 
   _handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault();    
     console.log("handle uploading-", this.state.file);
   }
 

@@ -20,7 +20,6 @@ class Phonebook extends Component {
       viewValues: [],
       showView: false
     };
-    this.fileuploadHandler.bind(this);
   }
   surnameHandler = e => this.setState({ surname: e.target.value });
 
@@ -33,7 +32,6 @@ class Phonebook extends Component {
   addressHandler = e => this.setState({ address: e.target.value });
 
   fileuploadHandler = e => {
-    const self = this;
     if (e.target.files && e.target.files[0]) {
       this.setState({ fileupload: e.target.files[0] });
     }
@@ -326,7 +324,14 @@ const View = cls => {
     return null;
   }
   const contact = cls.clsdata.state.viewValues;
+  let reader = new FileReader();
+  reader.onloadend = () => {
+    cls.clsdata.setState({
+      imagePreviewUrl: reader.result //this is what you will set in you img scr={imagePreviewUrl}
+    });
+  };
 
+  reader.readAsDataURL(contact.fileupload);
   return (
     <div
       className="viewWrap"
@@ -334,17 +339,17 @@ const View = cls => {
         cls.clsdata.state.showView ? { display: "grid" } : { display: "none" }
       }
     >
-      <div className="closeWrap">
+     
+        <div className="viewBody">
+           <div className="closeWrap">
         <span
           className="close"
           onClick={() => cls.clsdata.setState({ showView: false })}
         >
           x
         </span>
-        <div className="viewBody">
-          <h2>View Contact</h2>
           <div className="contactImage">
-            <img id="target" src="{this.state.fileupload}" />
+            <img id="target" src={cls.clsdata.state.imagePreviewUrl} />
           </div>
           <div className="surnameOthername">
             {contact.surname} {contact.othernames}
