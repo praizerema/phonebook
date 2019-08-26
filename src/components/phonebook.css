@@ -19,8 +19,11 @@
   text-align: left;
   max-height: 100%;
 }
-.form-control{
+.form-control {
   height: 40px !important;
+}
+.form-group {
+  text-align: left !important;
 }
 .contentWrap {
   width: 100%;
@@ -73,24 +76,30 @@ h3 {
   align-content: center;
   z-index: 1;
 }
-/* .closeWrap {
-  width: 40%;
+.closeWrap {
+  width: 52%;
   justify-self: center;
   align-self: center;
 }
 
 .closeWrap .close {
   position: relative;
-  right: -101%;
+  right: -90%;
   font-weight: 600;
-  top: 20px;
+  /* top: 20px; */
   color: red;
   cursor: pointer;
-} */
-
+  margin-left: 10px
+} 
 
 .editBody {
   background-color: #fff;
+  width: 400px;
+  height: 600px;
+  margin: auto;
+  align-content: center;
+  border-radius: 20px;
+  padding: 20px 20px;
 }
 .viewWrap {
   padding: 20px 10px;
@@ -104,21 +113,25 @@ h3 {
 }
 .viewBody {
   background-color: #fff;
+  width: 400px;
+  height: 450px;
+  margin: auto;
+  align-content: center;
+  border-radius: 20px;
 }
 .surnameOthername {
-  color: #9ed41e;
+  color: #1e73d4;
   font-size: 2.5em;
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
 }
 .email {
-  color: #9ed41e;
+  color: #1e73d4 !important;
   font-size: 1.8em;
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
-
 }
 
 .phoneNo {
@@ -129,29 +142,37 @@ h3 {
   margin-bottom: 15px;
 }
 
-.address{
-    color: #9ed41e;
-    font-size: 1.2em;
-font-weight: bold;
-text-align: center;
-margin-bottom: 15px;
+.address {
+  color: #9ed41e;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
 }
-.contactImage{
-width: 30vw;
-height: 32vh;
-border-radius: 150px;
-margin: auto;
+.contactImage {
+  /* width: 30%;
+  height: 30%;
+  border-radius: 150px;
+  margin: auto; */
+  margin-top: 20px;
 }
 
-#target{
-    width: 30vw;
-    height: 32vh;
-    margin: auto;
-} 
-input.edit {
+#target {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  border-radius: 50%;
+}
+#target2 {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  border-radius: 50%;
+}
+/* input.edit {
   width: 90%;
   align-self: auto;
-}
+} */
 /* .signupPage{
     width: 20%;
     height: 85vh;
@@ -299,14 +320,14 @@ td {
 }
 
 .closeWrap {
-  width: 40%;
+  width: 100%;
   justify-self: center;
   align-self: center;
+ 
 }
-
 .closeWrap .close {
   position: relative;
-  right: -101%;
+  right: -55%;
   font-weight: 600;
   top: 20px;
   color: red;
@@ -319,56 +340,68 @@ td {
 .viewWrap {
   padding: 20px 10px;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(236, 236, 236, 0.7);
   width: 100vw;
   height: 100vh;
   align-content: center;
-  border-radius: 6px
+  border-radius: 20px
 }
 .viewBody {
   background-color: #fff;
+  border-radius: 10px;
+  padding: 20px 10px;
+  width: 40vw;
+  height: 50vh;
+  align-content: center;
+  margin: auto;
 }
 .surnameOthername {
-  color: #9ed41e;
-  font-size: 2.5em;
+  color: #11080f;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
+  text-transform: capitalize;
+  margin: auto;
 }
-.email {
-  color: #9ed41e;
-  font-size: 1.8em;
+.email{
+  color: #cc0ba2;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
 
 }
-
+a{
+  text-decoration: none;
+  color: #cc0ba2;
+}
 .phoneNo {
-  color: #9ed41e;
-  font-size: 1.8em;
+  color: #cc0ba2;
+  font-size: 13px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
 }
 
 .address{
-    color: #9ed41e;
-    font-size: 1.2em;
+    color: #3d0330;
+    font-size: 11px;
 font-weight: bold;
 text-align: center;
 margin-bottom: 15px;
+margin: auto;
 }
 .contactImage{
-width: 30vw;
-height: 32vh;
+width: 22vw;
+height: 25vh;
 border-radius: 150px;
 
 margin: auto;
 }
 
 #target{
-    width: 30vw;
-    height: 32vh;
+    width: 22vw;
+    height: 25vh;
     margin: auto;
 } */

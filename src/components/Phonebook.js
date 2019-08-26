@@ -23,7 +23,6 @@ class Phonebook extends Component {
       viewValues: [],
       showView: false
     };
-    this.fileuploadHandler.bind(this);
   }
   surnameHandler = e => this.setState({ surname: e.target.value });
 
@@ -36,7 +35,6 @@ class Phonebook extends Component {
   addressHandler = e => this.setState({ address: e.target.value });
 
   fileuploadHandler = e => {
-    const self = this;
     if (e.target.files && e.target.files[0]) {
       this.setState({ fileupload: e.target.files[0] });
     }
@@ -168,7 +166,7 @@ class Phonebook extends Component {
                   <label className="font-weight-bold mb-2">
                     Upload contact image
                   </label>
-                  <br/>
+                  <br />
                   <input
                     className="text-muted"
                     type="file"
@@ -255,20 +253,24 @@ const Edit = cls => {
         cls.clsdata.state.showEdit ? { display: "grid" } : { display: "none" }
       }
     >
-      <div className="closeWrap">
+      
+        <div className="editBody text-left">
+          <div className="closeWrap text-left">
         <span
           className="close"
           onClick={() => cls.clsdata.setState({ showEdit: false })}
         >
           x
         </span>
-        <div className="editBody">
-          <h2>Edit Contact</h2>
+        </div>
+          <h3>Edit Contact</h3>
+          <form>
+          <div className="form-group text-left">
           <label>Surname</label>
           <input
+          className="form-control edit"
             type="text"
             placeholder="Surname"
-            className="edit"
             onChange={e => {
               cls.clsdata.setState({
                 editValues: { ...contact, surname: e.target.value }
@@ -280,11 +282,14 @@ const Edit = cls => {
             }}
             value={contact.surname}
           />
+          </div>
+        
+          <div className="form-group">
           <label>Othernames</label>
           <input
+          className="form-control edit"
             type="text"
             placeholder="Othernames"
-            className="edit"
             onChange={e => {
               cls.clsdata.setState({
                 editValues: { ...contact, othernames: e.target.value }
@@ -296,11 +301,14 @@ const Edit = cls => {
             }}
             value={contact.othernames}
           />
+          </div>
+          
+          <div className="form-group">
           <label>Email</label>
           <input
+          className="form-control edit"
             type="email"
             placeholder="Email"
-            className="edit"
             onChange={e => {
               cls.clsdata.setState({
                 editValues: { ...contact, email: e.target.value }
@@ -312,11 +320,14 @@ const Edit = cls => {
             }}
             value={contact.email}
           />
+          </div>
+          
+          <div className="form-group">
           <label>Mobile No</label>
           <input
+          className="form-control edit"
             type="tel"
             placeholder="Mobile No"
-            className="edit"
             onChange={e => {
               cls.clsdata.setState({
                 editValues: { ...contact, phoneNo: e.target.value }
@@ -328,11 +339,14 @@ const Edit = cls => {
             }}
             value={contact.phoneNo}
           />
+          </div>
+          
+          <div className="form-group">
           <label>Address</label>
           <input
+          className="form-control edit"
             type="text"
             placeholder="address"
-            className="edit"
             onChange={e => {
               cls.clsdata.setState({
                 editValues: { ...contact, address: e.target.value }
@@ -344,15 +358,19 @@ const Edit = cls => {
             }}
             value={contact.address}
           />
-          <button
-            className="add"
+          </div>
+          </form>
+        <div className="text-right"> 
+        <button
+            className="btn btn-add btn-small"
             onClick={() => cls.clsdata.setState({ showEdit: false })}
           >
             Done
           </button>
         </div>
+          
+        </div>
       </div>
-    </div>
   );
 };
 
@@ -361,7 +379,14 @@ const View = cls => {
     return null;
   }
   const contact = cls.clsdata.state.viewValues;
+  let reader = new FileReader();
+  reader.onloadend = () => {
+    cls.clsdata.setState({
+      imagePreviewUrl: reader.result //this is what you will set in you img scr={imagePreviewUrl}
+    });
+  };
 
+  reader.readAsDataURL(contact.fileupload);
   return (
     <div
       className="viewWrap"
@@ -369,18 +394,17 @@ const View = cls => {
         cls.clsdata.state.showView ? { display: "grid" } : { display: "none" }
       }
     >
-      <div className="closeWrap">
-        <span
-          className="close"
-          onClick={() => cls.clsdata.setState({ showView: false })}
-        >
-          x
-        </span>
-        <div className="viewBody">
-          <h2>View Contact</h2>
+      <div className="viewBody">
+        <div className="closeWrap text-left">
+          <span
+            className="close mr-3 mt-3"
+            onClick={() => cls.clsdata.setState({ showView: false })}
+          >
+            x
+          </span>
+          </div>
           <div className="contactImage">
-            <img id="target" src={cls.clsdata.state.imagePreviewUrl}/>
-          
+            <img id="target" src={cls.clsdata.state.imagePreviewUrl} />
           </div>
           <div className="surnameOthername">
             {contact.surname} {contact.othernames}
@@ -395,7 +419,7 @@ const View = cls => {
           <div className="address">{contact.address}</div>
         </div>
       </div>
-    </div>
+   
   );
 };
 export default Phonebook;
