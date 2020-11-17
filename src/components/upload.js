@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class ImageUpload extends React.Component {
           </button>
         </form>
         <div className="imgPreview">
-          <img src={this.state.imagePreviewUrl} />
+          <img src={this.state.imagePreviewUrl} alt="img"/>
         </div>
       </div>
     );

@@ -24,6 +24,7 @@ class Phonebook extends Component {
       showView: false
     };
   }
+  //Handle inputs
   surnameHandler = e => this.setState({ surname: e.target.value });
 
   othernamesHandler = e => this.setState({ othernames: e.target.value });
@@ -64,6 +65,7 @@ class Phonebook extends Component {
   };
   add(e) {
     e.preventDefault();
+    document.getElementById("imgInput").required = true;
     if (this.state.surname.length < 3) {
       alert("invalid surname");
       return 0;
@@ -93,17 +95,20 @@ class Phonebook extends Component {
         fileupload: this.state.fileupload
       };
       var contacts = this.state.contactList;
+      //contactList is an array in the state and its value has been passed to contacts
       contacts.push(data);
+// the value of var data is being pushed to var contacts which is contactList
       this.setState({ contactList: contacts });
     }
   }
 
   render() {
+    // assign this to cls
     let cls = this;
     return (
-      <div className="bdy ">
+      <div className="bdy">
         <div className="contentWrap row">
-          <div className="col-4 ">
+          <div className="col-lg-4 col-sm-12">
             <div className="signupPage m-5">
               <h3 className="mb-4 text-center">Add New Contact</h3>
               <form
@@ -168,9 +173,10 @@ class Phonebook extends Component {
                   </label>
                   <br />
                   <input
-                    className="text-muted"
+                    className="text-muted form-control"
                     type="file"
                     placeholder="image"
+                    id="imgInput"
                     //onChange={this.fileuploadHandler}// what was there before
                     onChange={this.fileuploadHandler.bind(this)}
                     //value={this.state.fileupload}
@@ -187,7 +193,7 @@ class Phonebook extends Component {
 
           <Edit clsdata={this} />
           <View clsdata={this} />
-          <div className="col-8">
+          <div className="col-lg-8 col-sm-12">
             <div className="contactWrap m-4">
               <h3 className="mb-4 text-center">My Contact List</h3>
               <table className="table table-bordered">
@@ -213,6 +219,8 @@ class Phonebook extends Component {
                           >
                             <FontAwesomeIcon icon={faEye} />
                           </button>
+                       
+                        {/* edit button */}
                           <button
                             className="btn mr-2 btn-blue"
                             onClick={cls.editInfo.bind(cls, key)}
@@ -382,10 +390,21 @@ const View = cls => {
   let reader = new FileReader();
   reader.onloadend = () => {
     cls.clsdata.setState({
-      imagePreviewUrl: reader.result //this is what you will set in you img scr={imagePreviewUrl}
+      imagePreviewUrl: reader.result //this is what you will set in your img scr={imagePreviewUrl}
     });
   };
+  // if (contact.fileupload && contact.fileupload.type.match('image.*')) {
+  //   reader.readAsDataURL(contact.fileupload);
+  // } else {
+  //   // var img= document.getElementById("targetimg")
+  //   // img.css('display', 'none');
+  //   // img.css('display', 'none');
+  //   // img.attr('src', '');
+  // return(
+  //   <img src=""/>
+  // )
 
+  // }
   reader.readAsDataURL(contact.fileupload);
   return (
     <div
@@ -404,14 +423,14 @@ const View = cls => {
           </span>
           </div>
           <div className="contactImage">
-            <img id="target" src={cls.clsdata.state.imagePreviewUrl} />
+            <img id="targetimg" src={cls.clsdata.state.imagePreviewUrl || ""} alt="img"/>
           </div>
           <div className="surnameOthername">
             {contact.surname} {contact.othernames}
           </div>
 
           <div className="email">
-            <a href="#"> {contact.email} </a>
+             {contact.email}
           </div>
 
           <div className="phoneNo">{contact.phoneNo}</div>
